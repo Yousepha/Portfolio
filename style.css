@@ -1,79 +1,402 @@
-body {
-    font-family: 'Arial', sans-serif;
+/* ===== RESET ===== */
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* ===== VARIABLES ===== */
+:root {
+    --primary-color: #2563eb;
+    --dark-color: #0f172a;
+    --light-color: #f9fafb;
+    --text-color: #1f2933;
+    --card-bg: #ffffff;
+}
+
+/* ===== DARK MODE ===== */
+body.dark {
+    --dark-color: #020617;
+    --light-color: #0f172a;
+    --text-color: #f1f5f9;
+    --card-bg: #020617;
+}
+
+
+/* ===== BASE ===== */
+body {
+    font-family: "Segoe UI", Tahoma, sans-serif;
+    background: var(--light-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 60px 0;
+}
+
+h1, h2, h3 {
+    font-weight: 700;
+}
+
+/* ===== HEADER ===== */
 header {
-    background-color: #333;
-    color: #fff;
+    background: linear-gradient(135deg, var(--dark-color), var(--primary-color));
+    color: white;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    background: rgba(15, 23, 42, 0.9);
+    z-index: 1000;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* distance entre dark et hamburger */
+}
+
+.logo {
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    font-size: 1rem;
+    position: relative;
+}
+
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0%;
+    height: 2px;
+    background: var(--card-bg);
+    transition: 0.3s;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* ===== HERO ===== */
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 80px;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    animation: fadeUp 1s ease forwards;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-top: 10px;
+    animation: fadeUp 1.5s ease forwards;
+}
+
+.btn {
+    margin-top: 25px;
+    padding: 12px 25px;
+    background: var(--card-bg);
+    color: var(--primary-color);
+    border-radius: 25px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+/* ===== SECTIONS ===== */
+section h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.2rem;
+    position: relative;
+}
+
+section h2::after {
+    content: "";
+    width: 60px;
+    height: 4px;
+    background: var(--primary-color);
+    display: block;
+    margin: 10px auto 0;
+}
+
+/* ===== ABOUT ===== */
+#about p {
+    text-align: center;
+    max-width: 800px;
+    margin: 10px auto;
+    font-size: 1.1rem;
+}
+
+/* ===== SKILLS ===== */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+}
+
+.skill {
+    background: var(--card-bg);
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.skill:hover {
+    transform: translateY(-10px);
+}
+
+.skill h3 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+/* ===== PROJECTS ===== */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.project-card {
+    background: var(--card-bg);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.project-card:hover {
+    transform: scale(1.05);
+}
+
+.project-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 8px;
+}
+
+.project-card a {
+    display: inline-block;
+    margin-top: 10px;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+/* ===== CONTACT ===== */
+form {
+    max-width: 600px;
+    margin: auto;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    outline: none;
+    font-size: 1rem;
+}
+
+textarea {
+    resize: none;
+    height: 120px;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 25px;
+    background: var(--primary-color);
+    color: white;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #1e40af;
+}
+
+.contact-info {
+    text-align: center;
+    margin-top: 25px;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    background: var(--dark-color);
+    color: white;
     text-align: center;
     padding: 20px;
 }
 
-section {
-    margin: 20px;
+/* ===== ANIMATIONS ===== */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-h2 {
-    color: #333;
-    position: relative;
-    display: inline-block;
+/* ===== RESPONSIVE ===== */
+
+/* ===== HAMBURGER ===== */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
 }
 
-h2::after {
-    content: '';
-    display: block;
-    width: 0;
-    height: 2px;
-    background-color: #333;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    transition: width 0.3s;
-}
-
-h2:hover::after {
-    width: 100%;
-}
-
-.project {
-    border: 1px solid #ddd;
-    padding: 10px;
-    margin-bottom: 10px;
-    transition: transform 0.3s ease-in-out;
-}
-
-.project:hover {
-    transform: scale(1.05);
-}
-
-.project h3 {
-    color: #333;
-    margin-bottom: 5px;
-}
-
-.project a {
-    display: inline-block;
-    background-color: #333;
-    color: #fff;
-    padding: 5px 10px;
-    text-decoration: none;
+.hamburger span {
+    width: 28px;
+    height: 3px;
+    background: var(--card-bg);
     border-radius: 5px;
-    transition: background-color 0.3s;
+    transition: 0.3s;
 }
 
-.project a:hover {
-    background-color: #555;
+/* Animation croix */
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
 }
 
-footer {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 10px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* ===== MENU MOBILE ===== */
+@media (max-width: 768px) {
+
+    .hamburger {
+        display: flex;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 70px;
+        right: 0;
+        background: var(--dark-color);
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        flex-direction: column;
+        align-items: center;
+        transition: max-height 0.4s ease;
+    }
+
+    .nav-links.open {
+        max-height: 350px; /* hauteur du menu */
+        padding-bottom: 10px;
+    }
+
+    .nav-links li {
+        margin: 15px 0;
+    }
+
+    /* Réduction des marges en mobile */
+    .theme-toggle {
+        margin-left: 0;
+        font-size: 1.3rem;
+    }
+}
+
+/* ===== DARK MODE BUTTON ===== */
+.theme-toggle {
+    cursor: pointer;
+    font-size: 1.4rem;
+    margin-left: 20px;
+    transition: 0.3s;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.2);
+}
+
+/* ===== ANIMATION AU SCROLL ===== */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Variante depuis la gauche */
+.reveal-left {
+    transform: translateX(-40px);
+}
+
+/* Variante depuis la droite */
+.reveal-right {
+    transform: translateX(40px);
+}
+
+/* ===== TYPING EFFECT ===== */
+#typing::after {
+    content: "|";
+    margin-left: 5px;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 50%, 100% { opacity: 1; }
+    25%, 75% { opacity: 0; }
 }
